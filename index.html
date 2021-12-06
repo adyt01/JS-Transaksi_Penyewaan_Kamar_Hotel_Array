@@ -8,34 +8,41 @@
             var jenis_tmp_tidur = (document.form.jns_tp_tidur.value);
             var lama_sewa = parseFloat(document.form.lma_sewa.value);
 
+            var hrr_kamar = [
+                ["Standard", 100000, 150000],
+                ["Suite", 200000, 300000],
+                ["Deluxe", 300000, 400000],
+                ["President", 750000, 1000000]
+            ];
+
             var harga = 0.0;
             var diskon = 0.0;
             var sub = 0.0;
             var totbay = 0.0;
 
-            // Harga Kamar
+            //Harga Kamar
             if ((tipe_kamar == "Standard") && (jenis_tmp_tidur == "Single")) {
-                harga = 100000;
+                harga = hrr_kamar[0][1];
             } else if ((tipe_kamar == "Standard") && (jenis_tmp_tidur == "Double")) {
-                harga = 150000;
+                harga = hrr_kamar[0][2];
             } else
 
             if ((tipe_kamar == "Suite") && (jenis_tmp_tidur == "Single")) {
-                harga = 200000;
+                harga = hrr_kamar[1][1];
             } else if ((tipe_kamar == "Suite") && (jenis_tmp_tidur == "Double")) {
-                harga = 300000;
+                harga = hrr_kamar[1][1];
             } else
 
             if ((tipe_kamar == "Deluxe") && (jenis_tmp_tidur == "Single")) {
-                harga = 300000;
+                harga = hrr_kamar[2][1];
             } else if ((tipe_kamar == "Deluxe") && (jenis_tmp_tidur == "Double")) {
-                harga = 400000;
+                harga = hrr_kamar[2][1];
             } else
 
             if ((tipe_kamar == "President") && (jenis_tmp_tidur == "Single")) {
-                harga = 750000;
+                harga = hrr_kamar[3][1];
             } else if ((tipe_kamar == "President") && (jenis_tmp_tidur == "Double")) {
-                harga = 1000000;
+                harga = hrr_kamar[3][1];
             }
 
             sub = harga * lama_sewa;
@@ -54,11 +61,25 @@
             document.form.odiskon.value = eval(diskon);
             document.form.ototbay.value = eval(totbay);
         }
+
+        function validasi_data() {
+            var angka_LmSewa = document.form.lma_sewa.value;
+            var number = /^[0-9]+$/;
+
+            if (angka_LmSewa == null || angka_LmSewa == "") {
+                alert("Periksa inputan Lama Sewa");
+                form.lma_sewa.focus();
+            } else if (!angka_LmSewa.match(number)) {
+                alert("Inputan harus angka");
+                form.lma_sewa.focus();
+            } else {
+                totalbayar();
+            }
+        }
     </script>
 </head>
 
 <body>
-
     <form name="form">
         <table border="1" align="center">
             <tr>
@@ -101,7 +122,7 @@
                         <tr>
                             <td>
                                 <center>
-                                    <input type="button" value="hitung" onClick="totalbayar()">
+                                    <input type="button" value="hitung" onclick="validasi_data()">
                                     <input type="reset" value="reset">
                                 </center>
                             </td>
