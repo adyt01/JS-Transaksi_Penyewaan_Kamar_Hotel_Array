@@ -1,0 +1,138 @@
+<html>
+
+<head>
+    <title>UTS Nomor 1</title>
+    <script language="JavaScript">
+        function totalbayar() {
+            var tipe_kamar = (document.form.tp_kamar.value);
+            var jenis_tmp_tidur = (document.form.jns_tp_tidur.value);
+            var lama_sewa = parseFloat(document.form.lma_sewa.value);
+
+            var harga = 0.0;
+            var diskon = 0.0;
+            var sub = 0.0;
+            var totbay = 0.0;
+
+            // Harga Kamar
+            if ((tipe_kamar == "Standard") && (jenis_tmp_tidur == "Single")) {
+                harga = 100000;
+            } else if ((tipe_kamar == "Standard") && (jenis_tmp_tidur == "Double")) {
+                harga = 150000;
+            } else
+
+            if ((tipe_kamar == "Suite") && (jenis_tmp_tidur == "Single")) {
+                harga = 200000;
+            } else if ((tipe_kamar == "Suite") && (jenis_tmp_tidur == "Double")) {
+                harga = 300000;
+            } else
+
+            if ((tipe_kamar == "Deluxe") && (jenis_tmp_tidur == "Single")) {
+                harga = 300000;
+            } else if ((tipe_kamar == "Deluxe") && (jenis_tmp_tidur == "Double")) {
+                harga = 400000;
+            } else
+
+            if ((tipe_kamar == "President") && (jenis_tmp_tidur == "Single")) {
+                harga = 750000;
+            } else if ((tipe_kamar == "President") && (jenis_tmp_tidur == "Double")) {
+                harga = 1000000;
+            }
+
+            sub = harga * lama_sewa;
+
+            // diskon
+            if (lama_sewa >= 5) {
+                diskon = 0.10 * sub;
+            } else {
+                diskon = 0.0;
+            }
+
+            // total bayar
+            totbay = sub - diskon;
+
+            document.form.osub.value = eval(sub);
+            document.form.odiskon.value = eval(diskon);
+            document.form.ototbay.value = eval(totbay);
+        }
+    </script>
+</head>
+
+<body>
+
+    <form name="form">
+        <table border="1" align="center">
+            <tr>
+                <td colspan="2">
+                    <h2>TRANSAKSI PENYEWAAN KAMAR HOTEL</h2>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="450" border="0" cellpadding="0" cellspacing="10" align="center">
+                        <tr>
+                            <td align="right">Tipe Kamar : </td>
+                            <td align="left"><select name="tp_kamar">
+                                    <option value="Standard"> Standard </option>
+                                    <option value="Suite"> Suite </option>
+                                    <option value="Deluxe"> Deluxe </option>
+                                    <option value="President"> President </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">Jenis Tempat Tidur : </td>
+                            <td align="left">
+                                <select name="jns_tp_tidur">
+                                    <option value="Single"> Single </option>
+                                    <option value="Double"> Double </option>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">Lama Sewa : </td>
+                            <td align="left">
+                                <input type="text" size="10" name="lma_sewa"> Hari
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            <tr>
+                <td>
+                    <table width="450" border="0" cellpadding="0" cellspacing="10" align="center">
+                        <tr>
+                            <td>
+                                <center>
+                                    <input type="button" value="hitung" onClick="totalbayar()">
+                                    <input type="reset" value="reset">
+                                </center>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="450" border="0" cellpadding="0" cellspacing="10" align="center">
+                        <tr>
+                            <td align="right">Total Sewa : </td>
+                            <td align="left">
+                                <input type="text" size="10" name="osub" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">Diskon : </td>
+                            <td align="left"><input type="text" size="10" name="odiskon" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right">Pembayaran : </td>
+                            <td align="left"><input type="text" size="10" name="ototbay" disabled>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
